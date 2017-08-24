@@ -1,41 +1,27 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-  [SerializeField]
-  Camera FrontCamera;
-  [SerializeField]
-  Camera BackCamera;
-  private bool switchCam = false;
-  private bool backCam = false;
-  void Start()
-  {
-    FrontCamera.GetComponent<Camera>().enabled = true;
-    BackCamera.GetComponent<Camera>().enabled = false;
 
-  }
+  public float speedH = 1.0f;
+  public float speedV = 1.0f;
+
+  private float yaw = 0.0f;
+  private float pitch = 0.0f;
+
+
+  // Update is called once per frame
   void Update()
   {
-    if (Input.GetKeyDown(KeyCode.M))
-    {
-      switchCam = !switchCam;
-      backCam = false;
-    }
-    if (Input.GetKeyDown(KeyCode.N))
-    {
-      switchCam = false;
-      backCam = true;
-    }
-    if (switchCam)
-    {
-      FrontCamera.GetComponent<Camera>().enabled = true;
-      BackCamera.GetComponent<Camera>().enabled = false;
-    }
-    else if (backCam)
-    {
-      FrontCamera.GetComponent<Camera>().enabled = false;
-      BackCamera.GetComponent<Camera>().enabled = true;
-    }
+
+    yaw += speedH * Input.GetAxis("Mouse X");
+    pitch -= speedV * Input.GetAxis("Mouse Y");
+
+    transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
+
+
+
   }
 }

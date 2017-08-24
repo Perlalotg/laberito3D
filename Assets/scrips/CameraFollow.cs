@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingCamera : MonoBehaviour
+public class CameraFollow : MonoBehaviour
 {
   public GameObject player;
   private Vector3 offset;
@@ -19,5 +19,3 @@ public class MovingCamera : MonoBehaviour
     transform.position = player.transform.position + offset;
   }
 }
-
-
